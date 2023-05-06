@@ -31,7 +31,7 @@ network:
         input_dim: 3
         freq: 4
 
-train_dataset:
+train_dataset:  #readin to setup nerf 
     data_root: 'data/nerf_synthetic'
     split: 'train'
     input_ratio: 1. # input image ratio, you can set it to 0.5 to acclerate training

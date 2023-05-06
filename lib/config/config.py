@@ -145,6 +145,7 @@ def parse_cfg(cfg, args):
     cfg.exp_name = cfg.exp_name.replace('gitbranch', os.popen('git describe --all').readline().strip()[6:])
     cfg.exp_name = cfg.exp_name.replace('gitcommit', os.popen('git describe --tags --always').readline().strip())
     print('EXP NAME: ', cfg.exp_name)
+    print("Task: ", cfg.task);
     cfg.trained_model_dir = os.path.join(cfg.trained_model_dir, cfg.task, cfg.scene, cfg.exp_name)
     cfg.record_dir = os.path.join(cfg.record_dir, cfg.task, cfg.scene, cfg.exp_name)
     cfg.result_dir = os.path.join(cfg.result_dir, cfg.task, cfg.scene, cfg.exp_name, cfg.save_tag)
@@ -162,7 +163,7 @@ def make_cfg(args):
             cfg.merge_from_other_cfg(current_cfg)
         else:
             cfg.merge_from_other_cfg(current_cfg)
-        print(cfg_file)
+        print(f"cfg {cfg_file}")
         return cfg
     cfg_ = merge_cfg(args.cfg_file, cfg)
     try:
@@ -174,6 +175,7 @@ def make_cfg(args):
     return cfg_
 
 
+#define the parser command for passing in commands
 parser = argparse.ArgumentParser()
 parser.add_argument("--cfg_file", default="configs/default.yaml", type=str)
 parser.add_argument('--test', action='store_true', dest='test', default=False)
